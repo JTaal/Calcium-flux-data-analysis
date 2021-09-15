@@ -7,8 +7,4 @@ ImageJ    https://imagej.net/
 Python 3  https://www.python.org/downloads/
 R         https://www.r-project.org/
 
-Optional:
-Visual Studio Code: https://code.visualstudio.com/
-Python 3: Python extension for VS Code or other python interpreter
-R: R extension for Visual Studio Code or https://www.rstudio.com/
-Graphpad: https://www.graphpad.com/
+Optional: https://code.visualstudio.com/, Python extension for VS Code or other python interpreter, R extension for Visual Studio Code or https://www.rstudio.com/, https://www.graphpad.com/
