@@ -1,0 +1,8 @@
+Programs needed to use all these files:
+
+Icy: http://icy.bioimageanalysis.org/
+ImageJ https://imagej.net/
+Visual Studio Code: https://code.visualstudio.com/
+Python 3: (Python extension for VS Code)
+R: (R extension for Visual Studio Code)
+Graphpad: https://www.graphpad.com/
