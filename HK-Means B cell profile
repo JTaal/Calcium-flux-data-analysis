@@ -8,6 +8,6 @@
 <parameter ID="Min object size (px)" value="100"/>
 <parameter ID="Channel" value="2"/>
 <parameter ID="Gaussian pre-filter" value="0.0"/>
-<parameter ID="Prepare for tracking" value="true"/>
+<parameter ID="Prepare for tracking" value="false"/>
 <parameter ID="Export labels" value="false"/>
 </Parameters>
