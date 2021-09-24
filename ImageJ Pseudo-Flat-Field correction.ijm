@@ -1,4 +1,4 @@
-//Get the title and channels
+//Get the title and Dimensions
 imageTitle=getTitle();
 Stack.getDimensions(width, height, channels, slices, frames);
 
