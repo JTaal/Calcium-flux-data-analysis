@@ -9,7 +9,7 @@ Essential:
 
 Optional: 
 **Visual Studio Code** https://code.visualstudio.com/
-**Python extension for VS Code**
+**Python extension for VS Code**, 
 **R extension for Visual Studio Code**
 **R studio** https://www.rstudio.com/ 
 **GraphPad Prism** https://www.graphpad.com/
