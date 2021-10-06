@@ -7,4 +7,9 @@ Essential:
 **Python 3**  https://www.python.org/downloads/
 **R**         https://www.r-project.org/
 
-Optional: https://code.visualstudio.com/, Python extension for VS Code or other python interpreter, R extension for Visual Studio Code or https://www.rstudio.com/, https://www.graphpad.com/
+Optional: 
+**Visual Studio Code** https://code.visualstudio.com/
+**Python extension for VS Code**
+**R extension for Visual Studio Code**
+**R studio** https://www.rstudio.com/ 
+**GraphPad Prism** https://www.graphpad.com/
