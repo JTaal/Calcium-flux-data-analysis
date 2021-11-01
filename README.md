@@ -24,4 +24,5 @@ Protocol:
 5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting) or use protocol to batch track an entire folder of sequences.
 
 
-![Data analysis flow chart Image conversion drawio](https://user-images.githubusercontent.com/71385957/139682485-1bf3c794-8d12-43e8-b061-fd7c31b3b1c5.png)
+
+![Data analysis flow chart Image conversion drawio](https://user-images.githubusercontent.com/71385957/139682804-f939abce-ce81-4254-aed7-5d9252aab176.png)
