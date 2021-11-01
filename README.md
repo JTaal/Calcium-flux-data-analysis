@@ -25,3 +25,4 @@ Protocol:
 
 ![Data analysis flow chart Image conversion drawio](https://user-images.githubusercontent.com/71385957/139685575-524312e8-426b-40d7-a538-6cf63e856b51.png)
 ![Data analysis flow chart Image conversion drawio (1)](https://user-images.githubusercontent.com/71385957/139685874-8ba82506-59d1-4033-8ce1-d907d40e5dd9.png)
+[Data analysis flow chart Image conversion.drawio.pdf](https://github.com/JTaal/Calcium-flux-data-analysis/files/7453854/Data.analysis.flow.chart.Image.conversion.drawio.pdf)
