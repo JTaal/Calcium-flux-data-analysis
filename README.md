@@ -1,4 +1,4 @@
-# Calcium-flux-data-analysis
+# Calciumflux data analysis
 Converting multi channel microscopic timelapses of calcium fluxing cells into data using Imagej and Icy
 
 Essential:
@@ -23,5 +23,5 @@ Protocol:
 4. Delete all non functional ROIs (False positives/Contaminations/Incomplete border cells/Untrackable cells)
 5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting) or use protocol to batch track an entire folder of sequences.
 
-# Image conversion Flowchart
+# Image conversion flowchart
 ![Data analysis flow chart Image conversion drawio (2)](https://user-images.githubusercontent.com/71385957/139689355-0cb0e194-160c-4080-a32e-2d1569719e5f.png)
