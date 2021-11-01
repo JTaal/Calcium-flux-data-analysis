@@ -15,7 +15,7 @@ Optional:
 
 ![image](https://user-images.githubusercontent.com/71385957/139680713-6e707879-2b99-41f6-9891-2a2346d249ff.png)
 
-**Protocol:**
+Protocol:
   
 1. Perform Pseudo flat-field correction
 2. Convert conditions into seperate .tiff files (or other format supported by ICY | With seperated channels!)
