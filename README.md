@@ -15,9 +15,6 @@ Optional:
 
 ![image](https://user-images.githubusercontent.com/71385957/139680713-6e707879-2b99-41f6-9891-2a2346d249ff.png)
 
-![image](https://user-images.githubusercontent.com/71385957/139680843-1af91a01-e4dd-4b71-9431-c2fb7a15d0b0.png)
-
-
 Protocol:
   
 1. Perform Pseudo flat-field correction
