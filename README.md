@@ -23,4 +23,4 @@ Protocol:
 4. Delete all non functional ROIs (False positives/Contaminations/Incomplete border cells/Untrackable cells)
 5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting) or use protocol to batch track an entire folder of sequences.
 
-![Data analysis flow chart Image conversion Transparant drawio](https://user-images.githubusercontent.com/71385957/139683225-2cc47ecf-6de0-40e6-a055-67734804bef9.png)
+![Data analysis flow chart Image conversion drawio](https://user-images.githubusercontent.com/71385957/139685575-524312e8-426b-40d7-a538-6cf63e856b51.png)
