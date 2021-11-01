@@ -13,8 +13,7 @@ Optional:
 **R studio** https://www.rstudio.com/ 
 **GraphPad Prism** https://www.graphpad.com/
 
-![image](https://user-images.githubusercontent.com/71385957/139680713-6e707879-2b99-41f6-9891-2a2346d249ff.png) ![image](https://user-images.githubusercontent.com/71385957/139680918-87c589a8-bf01-4de8-b2a7-3f4e8fb86441.png)
-
+![image](https://user-images.githubusercontent.com/71385957/139680713-6e707879-2b99-41f6-9891-2a2346d249ff.png)
 
 Protocol:
   
