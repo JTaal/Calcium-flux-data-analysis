@@ -15,11 +15,11 @@ Optional:
 
 Protocol:
   
-              ImageJ
+  ImageJ
 1. Perform Pseudo flat-field correction
 2. Convert conditions into seperate .tiff files (or other format supported by ICY | With seperated channels!)
 
-              Icy
+  Icy
 3. Segment cells using HK-means (B cell settings provided) on the last frame.
 4. Delete all non functional ROIs
 5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting)
