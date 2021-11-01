@@ -14,6 +14,7 @@ Optional:
 **GraphPad Prism** https://www.graphpad.com/
 
 Protocol:
+  
               ImageJ
 1. Perform Pseudo flat-field correction
 2. Convert conditions into seperate .tiff files (or other format supported by ICY | With seperated channels!)
