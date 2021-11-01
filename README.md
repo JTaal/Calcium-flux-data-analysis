@@ -22,3 +22,6 @@ Protocol:
 3. Segment cells using HK-means (B cell settings provided) on the last frame.
 4. Delete all non functional ROIs (False positives/Contaminations/Incomplete border cells/Untrackable cells)
 5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting) or use protocol to batch track an entire folder of sequences.
+
+
+![Data analysis flow chart Image conversion drawio](https://user-images.githubusercontent.com/71385957/139681567-7762932a-be53-4b78-8402-c56dd2933cce.png)
