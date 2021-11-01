@@ -1,4 +1,4 @@
-# Calciumflux data analysis
+# Calcium flux data analysis
 Converting multi channel microscopic timelapses of calcium fluxing cells into data using Imagej and Icy
 
 Essential:
