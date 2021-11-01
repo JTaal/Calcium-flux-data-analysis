@@ -21,5 +21,4 @@ Protocol:
 2. Convert conditions into seperate .tiff files (or other format supported by ICY | With seperated channels!)
 3. Segment cells using HK-means (B cell settings provided) on the last frame.
 4. Delete all non functional ROIs (False positives/Contaminations/Incomplete border cells/Untrackable cells)
-5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting)
-          or use protocol to batch track an entire folder of sequences.
+5. Track cell shape using Active Contours on reversed sequence (Brightfield tracking setting) or use protocol to batch track an entire folder of sequences.
