@@ -57,10 +57,10 @@ for(file in files){
   #maximum length of objects in tmplist * 0.5 < object in tmplist
   names(tmpList) <- names(datList) <- paste("cell",1:length(datList),sep="_")
   objlength <- max(unlist(lapply(tmpList, length)))
-  filtervalue <- objlength*0.5 #percentage
+  filtervalue <- objlength*0.3 #percentage
   
   
-  filtList <- tmpList[unlist(lapply(tmpList, FUN= function(x) length(x) > filtervalue))]
+  filtList <- tmpList[unlist(lapply(tmpList, FUN= function(x) length(x) >= filtervalue))]
   
   tmpList <- filtList
   # Plot each cell with available data
