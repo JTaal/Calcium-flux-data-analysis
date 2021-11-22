@@ -1,0 +1,13 @@
+<Parameters>
+<parameter ID="Max object size (px)" value="150"/>
+<parameter ID="Intensity classes" value="20"/>
+<parameter ID="Input" value="Active Sequence"/>
+<parameter ID="Frame" value="0"/>
+<parameter ID="Min object intensity" value="0.0"/>
+<parameter ID="Export ROIs" value="true"/>
+<parameter ID="Min object size (px)" value="30"/>
+<parameter ID="Channel" value="2"/>
+<parameter ID="Gaussian pre-filter" value="0.0"/>
+<parameter ID="Prepare for tracking" value="true"/>
+<parameter ID="Export labels" value="false"/>
+</Parameters>
