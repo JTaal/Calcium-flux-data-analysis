@@ -1,0 +1,1288 @@
+<protocol VERSION="4">
+<blocks>
+<block CommandLineID="" ID="1155601347" blockType="plugins.adufour.blocks.tools.input.Integer" className="plugins.adufour.blocks.tools.input.Integer" collapsed="false" definedName="IRM channel" height="62" keepsResults="true" width="171" xLocation="23" yLocation="508">
+<variables>
+<input>
+<variable ID="integer" name="integer" runtime="false" value="0" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="289123939" blockType="plugins.adufour.blocks.tools.input.Folder" className="plugins.adufour.blocks.tools.input.Folder" collapsed="false" definedName="Input Folder" height="61" keepsResults="true" width="170" xLocation="70" yLocation="60">
+<variables>
+<input>
+<variable ID="folder" name="folder" runtime="false" value="G:\Group_Westerberg\Jasper Taal\SP5\IRM and Calcium\Primary B cells\11112021 Ca2 primary\Individual conditions (with FFC)\New folder" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="2049786861" blockType="plugins.adufour.blocks.tools.output.IntegerOutput" className="plugins.adufour.blocks.tools.output.IntegerOutput" collapsed="false" definedName="Brightfield Channel" height="64" keepsResults="true" width="213" xLocation="6" yLocation="380">
+<variables>
+<input>
+<variable ID="integer" name="integer" runtime="false" value="2" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="23413558" blockType="plugins.adufour.blocks.tools.input.Folder" className="plugins.adufour.blocks.tools.input.Folder" collapsed="false" definedName="Output Folder" height="61" keepsResults="true" width="180" xLocation="60" yLocation="182">
+<variables>
+<input>
+<variable ID="folder" name="folder" runtime="false" value="G:\Group_Westerberg\Jasper Taal\SP5\IRM and Calcium\Primary B cells\11112021 Ca2 primary\Individual conditions (with FFC)\New folder\Data sheets testing\Final" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="1727884160" blockType="plugins.adufour.blocks.tools.input.Integer" className="plugins.adufour.blocks.tools.input.Integer" collapsed="false" definedName="Calcium channel" height="64" keepsResults="true" width="196" xLocation="11" yLocation="444">
+<variables>
+<input>
+<variable ID="integer" name="integer" runtime="false" value="1" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="961012967" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Output extension (xlsx or csv)" height="64" keepsResults="true" width="268" xLocation="0" yLocation="255">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="xlsx" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<workflow ID="1690557453" blockType="plugins.adufour.blocks.lang.SequenceFileBatch" className="plugins.adufour.blocks.lang.SequenceFileBatch" collapsed="false" definedName="Calcium Tracking Batch" height="1654" keepsResults="true" width="4426" xLocation="389" yLocation="44">
+<blocks>
+<block ID="1183993309" blockType="plugins.adufour.blocks.tools.sequence.ShowSequence" className="plugins.adufour.blocks.tools.sequence.ShowSequence" collapsed="false" definedName="Show Tracking sequence" height="61" keepsResults="true" width="238" xLocation="248" yLocation="42">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="832956400" blockType="plugins.tprovoost.scripteditor.scriptblock.Javascript" className="plugins.tprovoost.scripteditor.scriptblock.Javascript" collapsed="false" definedName="Reverse sequence script" height="137" keepsResults="true" width="232" xLocation="179" yLocation="127">
+<variables>
+<input>
+<variable ID="Script" name="" runtime="false" value="importClass(Packages.icy.sequence.SequenceUtil)&#10;&#10;sequence = input0&#10;SequenceUtil.reverseT(sequence)&#10;output0 = sequence" visible="true"/>
+<variable ID="Add Input" name="Add Input" runtime="false" value="0" visible="true"/>
+<variable ID="Add output" name="Add Output" runtime="false" value="0" visible="true"/>
+<variable ID="input0" name="input0" runtime="false" type="icy.sequence.Sequence" visible="true"/>
+</input>
+<output>
+<variable ID="output0" name="output0" runtime="false" type="icy.sequence.Sequence" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="815809005" blockType="plugins.adufour.blocks.tools.roi.GetROIFromSequence" className="plugins.adufour.blocks.tools.roi.GetROIFromSequence" collapsed="false" definedName="Get ROI from sequence" height="105" keepsResults="true" width="230" xLocation="180" yLocation="280">
+<variables>
+<input>
+<variable ID="input sequence" name="Source" runtime="false" visible="true"/>
+<variable ID="selection state of ROI to extract" name="ROI to get" runtime="false" value="ALL" visible="true"/>
+</input>
+<output>
+<variable ID="extracted rois" name="List of ROI" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="750366310" blockType="plugins.adufour.activecontours.ActiveContours" className="plugins.adufour.activecontours.ActiveContours" collapsed="false" definedName="Active Contours" height="608" keepsResults="true" width="278" xLocation="519" yLocation="95">
+<variables>
+<input>
+<variable ID="input sequence" name="Input" runtime="false" visible="true"/>
+<variable ID="Input ROI" name="input ROI" runtime="false" visible="true"/>
+<variable ID="regularization: weight" name="Contour smoothness" runtime="false" value="0.05" visible="false"/>
+<variable ID="edge: weight" name="Edge weight" runtime="false" value="-0.99999999999" visible="false"/>
+<variable ID="edge: channel" name="Find edges in channel" runtime="false" visible="false"/>
+<variable ID="region: weight" name="Region weight" runtime="false" value="1.0" visible="false"/>
+<variable ID="region: sensitivity" name="Region sensitivity" runtime="false" value="1.0" visible="false"/>
+<variable ID="region: channel" name="Find regions in channel" runtime="false" visible="false"/>
+<variable ID="balloon: weight" name="Contour inflation" runtime="false" value="0.0" visible="false"/>
+<variable ID="contour resolution" name="Contour sampling" runtime="false" value="1.5" visible="true"/>
+<variable ID="region bounds" name="Bound field to ROI of" runtime="false" value="No Sequence" visible="true"/>
+<variable ID="time step" name="Evolution time step" runtime="false" value="0.1" visible="true"/>
+<variable ID="convergence value" name="Convergence criterion" runtime="false" value="0.0049" visible="true"/>
+<variable ID="max. iterations" name="Max. iterations" runtime="false" value="25000" visible="true"/>
+<variable ID="type of ROI output" name="Type of ROI" runtime="false" value="AREA" visible="true"/>
+<variable ID="tracking" name="Track objects over time" runtime="false" value="true" visible="true"/>
+<variable ID="division sensitivity" name="Division sensitivity" runtime="false" value="0.0" visible="true"/>
+<variable ID="axis constraint" name="Axis constraint" runtime="false" value="0.0" visible="true"/>
+<variable ID="Volume weight" name="Volume weight" runtime="false" value="0.0" visible="true"/>
+<variable ID="watch entering objects" name="Watch entering objects" runtime="false" value="false" visible="true"/>
+</input>
+<output>
+<variable ID="Regions of interest" name="Regions of interest" runtime="false" visible="true"/>
+<variable ID="Tracks" name="Tracks" runtime="false" visible="true"/>
+<variable ID="Labels" name="Labels" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1025426812" blockType="plugins.adufour.blocks.tools.input.Folder" className="plugins.adufour.blocks.tools.input.Folder" collapsed="false" definedName="Output Folder" height="61" keepsResults="true" width="180" xLocation="224" yLocation="1077">
+<variables>
+<input>
+<variable ID="folder" name="folder" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="638826384" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="144" xLocation="2" yLocation="1427">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Sum intensity" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1617865571" blockType="plugins.tprovoost.sequenceblocks.infos.GetFileName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Get file name" height="131" keepsResults="true" width="206" xLocation="186" yLocation="403">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="folder" name="Folder" runtime="false" value="false" visible="true"/>
+<variable ID="extension" name="Extension" runtime="false" value="false" visible="true"/>
+</input>
+<output>
+<variable ID="name" name="Filename" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1638763342" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Extension" height="64" keepsResults="true" width="156" xLocation="7" yLocation="1126">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="101588624" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append extension" height="130" keepsResults="true" width="201" xLocation="186" yLocation="1430">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="658155541" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Sum intensity text" height="130" keepsResults="true" width="204" xLocation="565" yLocation="1272">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1065207242" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create Sum intensity file" height="132" keepsResults="true" width="240" xLocation="1040" yLocation="1218">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1920050748" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="148" xLocation="0" yLocation="1296">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Mean intensity" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1387746795" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append extension" height="130" keepsResults="true" width="201" xLocation="202" yLocation="1298">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1518878907" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Mean intensity text" height="130" keepsResults="true" width="210" xLocation="564" yLocation="856">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="349530987" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create Mean intensity file" height="132" keepsResults="true" width="246" xLocation="1043" yLocation="1091">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1659076552" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="5" yLocation="1207">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Area" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1332896382" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append extension" height="130" keepsResults="true" width="201" xLocation="218" yLocation="1162">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="2054296461" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Area text" height="130" keepsResults="true" width="154" xLocation="599" yLocation="730">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="97888762" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create Area file" height="128" keepsResults="true" width="199" xLocation="1054" yLocation="962">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1091295725" blockType="plugins.tprovoost.sequenceblocks.creation.DuplicateSequence" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Duplicate sequence" height="83" keepsResults="true" width="210" xLocation="903" yLocation="87">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="duplicated" name="duplicated" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1435529723" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="942" yLocation="339">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Calcium Duplicate" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="63907406" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="922" yLocation="182">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1206195794" blockType="plugins.tprovoost.sequenceblocks.infos.SetName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Set name" height="86" keepsResults="true" width="206" xLocation="904" yLocation="406">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="name" name="Name" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="870391428" blockType="plugins.tprovoost.sequenceblocks.add.AddRois" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Add rois" height="107" keepsResults="true" width="246" xLocation="876" yLocation="524">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="rois(s)" name="Roi(s)" runtime="false" visible="true"/>
+<variable ID="remove" name="Remove previous" runtime="false" value="true" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1218831524" blockType="plugins.adufour.roi.ROITrackStatistics" className="plugins.adufour.roi.ROIMeasures" collapsed="false" definedName="ROI track statistics" height="152" keepsResults="true" width="303" xLocation="1248" yLocation="173">
+<variables>
+<input>
+<variable ID="trackgroup" name="Track group" runtime="false" visible="true"/>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="channel" name="Channel" runtime="false" visible="true"/>
+<variable ID="descriptor" name="Descriptor" runtime="false" value="Area" visible="true"/>
+</input>
+<output>
+<variable ID="workbook" name="Workbook" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="792560623" blockType="plugins.adufour.roi.ROITrackStatistics" className="plugins.adufour.roi.ROIMeasures" collapsed="false" definedName="ROI track statistics" height="152" keepsResults="true" width="303" xLocation="1231" yLocation="467">
+<variables>
+<input>
+<variable ID="trackgroup" name="Track group" runtime="false" visible="true"/>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="channel" name="Channel" runtime="false" visible="true"/>
+<variable ID="descriptor" name="Descriptor" runtime="false" value="Mean intensity" visible="true"/>
+</input>
+<output>
+<variable ID="workbook" name="Workbook" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="921146298" blockType="plugins.adufour.roi.ROITrackStatistics" className="plugins.adufour.roi.ROIMeasures" collapsed="false" definedName="ROI track statistics" height="152" keepsResults="true" width="303" xLocation="1218" yLocation="632">
+<variables>
+<input>
+<variable ID="trackgroup" name="Track group" runtime="false" visible="true"/>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="channel" name="Channel" runtime="false" visible="true"/>
+<variable ID="descriptor" name="Descriptor" runtime="false" value="Sum intensity" visible="true"/>
+</input>
+<output>
+<variable ID="workbook" name="Workbook" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1032723422" blockType="plugins.adufour.blocks.tools.io.WorkbookToFile" className="plugins.adufour.blocks.tools.io.WorkbookToFile" collapsed="false" definedName="Workbook to file" height="353" keepsResults="true" width="499" xLocation="1941" yLocation="90">
+<variables>
+<input>
+<variable ID="workbook" name="workbook" runtime="false" visible="true"/>
+<variable ID="file format" name="file format" runtime="false" value="Spreadsheet" visible="true"/>
+<variable ID="output file" name="output file" runtime="false" visible="true"/>
+<variable ID="If file exists" name="If file exists" runtime="false" value="Overwrite" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1039069485" blockType="plugins.adufour.blocks.tools.io.WorkbookToFile" className="plugins.adufour.blocks.tools.io.WorkbookToFile" collapsed="false" definedName="Workbook to file" height="349" keepsResults="true" width="499" xLocation="1808" yLocation="447">
+<variables>
+<input>
+<variable ID="workbook" name="workbook" runtime="false" visible="true"/>
+<variable ID="file format" name="file format" runtime="false" value="Spreadsheet" visible="true"/>
+<variable ID="output file" name="output file" runtime="false" visible="true"/>
+<variable ID="If file exists" name="If file exists" runtime="false" value="Overwrite" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1328379672" blockType="plugins.adufour.blocks.tools.io.WorkbookToFile" className="plugins.adufour.blocks.tools.io.WorkbookToFile" collapsed="false" definedName="Workbook to file" height="396" keepsResults="true" width="499" xLocation="1619" yLocation="811">
+<variables>
+<input>
+<variable ID="workbook" name="workbook" runtime="false" visible="true"/>
+<variable ID="file format" name="file format" runtime="false" value="Spreadsheet" visible="true"/>
+<variable ID="output file" name="output file" runtime="false" visible="true"/>
+<variable ID="If file exists" name="If file exists" runtime="false" value="Overwrite" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="933710153" blockType="plugins.adufour.blocks.tools.sequence.ShowSequence" className="plugins.adufour.blocks.tools.sequence.ShowSequence" collapsed="false" definedName="Show sequence" height="61" keepsResults="true" width="214" xLocation="1287" yLocation="354">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="1945892183" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="304" yLocation="1015">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="xml" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="1176621553" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="157" yLocation="781">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Calcium tracks" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="779189752" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="195" yLocation="640">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="378165525" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Tracks text" height="130" keepsResults="true" width="165" xLocation="541" yLocation="1125">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="989942332" blockType="plugins.adufour.blocks.tools.io.GetSequenceFolder" className="plugins.adufour.blocks.tools.io.GetSequenceFolder" collapsed="false" definedName="Get sequence folder" height="83" keepsResults="true" width="212" xLocation="225" yLocation="554">
+<variables>
+<input>
+<variable ID="Sequence" name="Sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="Folder" name="Folder" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1369735412" blockType="plugins.adufour.blocks.tools.io.CreateFolder" className="plugins.adufour.blocks.tools.io.CreateFolder" collapsed="false" definedName="Create Tracks folder" height="108" keepsResults="true" width="216" xLocation="601" yLocation="1420">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="folder name" name="Folder name" runtime="false" value="Tracks" visible="true"/>
+</input>
+<output>
+<variable ID="new folder" name="New folder" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1584500257" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create XML file" height="132" keepsResults="true" width="199" xLocation="947" yLocation="830">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="357638828" blockType="plugins.fab.trackmanager.blocks.SaveTracksToXML" className="plugins.fab.trackmanager.TrackManager" collapsed="false" definedName="Save tracks to XML" height="83" keepsResults="true" width="207" xLocation="1223" yLocation="788">
+<variables>
+<input>
+<variable ID="tracks" name="Track group" runtime="false" visible="true"/>
+<variable ID="file" name="XML file" runtime="false" type="java.io.File" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<workflow ID="1281534305" blockType="plugins.adufour.blocks.lang.WorkFlow" className="plugins.adufour.blocks.lang.WorkFlow" collapsed="false" definedName="Spreading batch tracking" height="1372" keepsResults="true" width="1910" xLocation="2493" yLocation="6">
+<blocks>
+<block ID="109698295" blockType="plugins.tprovoost.sequenceblocks.creation.DuplicateSequence" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Duplicate sequence" height="83" keepsResults="true" width="241" xLocation="30" yLocation="126">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="duplicated" name="duplicated" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1742731113" blockType="plugins.tprovoost.sequenceblocks.infos.GetName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Get name" height="83" keepsResults="true" width="242" xLocation="41" yLocation="227">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="name" name="Name" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="175279986" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="61" keepsResults="true" width="127" xLocation="6" yLocation="370">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Live tracking of IRM" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1392939146" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Create name" height="130" keepsResults="true" width="173" xLocation="144" yLocation="324">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="2055556891" blockType="plugins.tprovoost.sequenceblocks.infos.SetName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Set name" height="86" keepsResults="true" width="242" xLocation="351" yLocation="148">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="name" name="Name" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1755144445" blockType="plugins.adufour.blocks.tools.sequence.ShowSequence" className="plugins.adufour.blocks.tools.sequence.ShowSequence" collapsed="false" definedName="Show same sequence from the start" height="61" keepsResults="true" width="299" xLocation="367" yLocation="268">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="248344386" blockType="plugins.tprovoost.sequenceblocks.infos.GetFileName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Get file name" height="131" keepsResults="true" width="206" xLocation="370" yLocation="437">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="folder" name="Folder" runtime="false" value="false" visible="true"/>
+<variable ID="extension" name="Extension" runtime="false" value="false" visible="true"/>
+</input>
+<output>
+<variable ID="name" name="Filename" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1726554876" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Measurement" height="64" keepsResults="true" width="177" xLocation="218" yLocation="807">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="IRM Area" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="201126502" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Extention" height="64" keepsResults="true" width="156" xLocation="225" yLocation="889">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="497921168" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="421" yLocation="824">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1259814538" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="803" yLocation="846">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="91112253" blockType="plugins.adufour.blocks.tools.input.Folder" className="plugins.adufour.blocks.tools.input.Folder" collapsed="false" definedName="Output Folder" height="61" keepsResults="true" width="180" xLocation="424" yLocation="1132">
+<variables>
+<input>
+<variable ID="folder" name="folder" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="2092846331" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create Area file" height="128" keepsResults="true" width="199" xLocation="1117" yLocation="1131">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="46918071" blockType="plugins.adufour.blocks.tools.output.IntegerOutput" className="plugins.adufour.blocks.tools.output.IntegerOutput" collapsed="false" definedName="IRM channel" height="64" keepsResults="true" width="171" xLocation="455" yLocation="65">
+<variables>
+<input>
+<variable ID="integer" name="integer" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1283260541" blockType="plugins.adufour.activecontours.ActiveContours" className="plugins.adufour.activecontours.ActiveContours" collapsed="false" definedName="Active Contours" height="583" keepsResults="true" width="278" xLocation="697" yLocation="262">
+<variables>
+<input>
+<variable ID="input sequence" name="Input" runtime="false" visible="true"/>
+<variable ID="Input ROI" name="input ROI" runtime="false" visible="true"/>
+<variable ID="regularization: weight" name="Contour smoothness" runtime="false" value="0.05" visible="false"/>
+<variable ID="edge: weight" name="Edge weight" runtime="false" value="-0.0" visible="false"/>
+<variable ID="edge: channel" name="Find edges in channel" runtime="false" visible="false"/>
+<variable ID="region: weight" name="Region weight" runtime="false" value="1.0" visible="false"/>
+<variable ID="region: sensitivity" name="Region sensitivity" runtime="false" value="3.0" visible="false"/>
+<variable ID="region: channel" name="Find regions in channel" runtime="false" visible="false"/>
+<variable ID="balloon: weight" name="Contour inflation" runtime="false" value="0.0" visible="false"/>
+<variable ID="contour resolution" name="Contour sampling" runtime="false" value="1.0" visible="true"/>
+<variable ID="region bounds" name="Bound field to ROI of" runtime="false" value="No Sequence" visible="true"/>
+<variable ID="time step" name="Evolution time step" runtime="false" value="0.1" visible="true"/>
+<variable ID="convergence value" name="Convergence criterion" runtime="false" value="0.001" visible="true"/>
+<variable ID="max. iterations" name="Max. iterations" runtime="false" value="100000" visible="true"/>
+<variable ID="type of ROI output" name="Type of ROI" runtime="false" value="AREA" visible="true"/>
+<variable ID="tracking" name="Track objects over time" runtime="false" value="true" visible="true"/>
+<variable ID="division sensitivity" name="Division sensitivity" runtime="false" value="0.0" visible="true"/>
+<variable ID="axis constraint" name="Axis constraint" runtime="false" value="0.0" visible="true"/>
+<variable ID="Volume weight" name="Volume weight" runtime="false" value="0.0" visible="true"/>
+<variable ID="watch entering objects" name="Watch entering objects" runtime="false" value="false" visible="true"/>
+</input>
+<output>
+<variable ID="Regions of interest" name="Regions of interest" runtime="false" visible="true"/>
+<variable ID="Tracks" name="Tracks" runtime="false" visible="true"/>
+<variable ID="Labels" name="Labels" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="440179893" blockType="plugins.tprovoost.sequenceblocks.creation.DuplicateSequence" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Duplicate sequence" height="83" keepsResults="true" width="210" xLocation="1077" yLocation="254">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="duplicated" name="duplicated" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1970075569" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="1110" yLocation="507">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Spreading Duplicate" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="830764681" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="1090" yLocation="350">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="321031216" blockType="plugins.adufour.blocks.tools.io.GetSequenceFolder" className="plugins.adufour.blocks.tools.io.GetSequenceFolder" collapsed="false" definedName="Get sequence folder" height="83" keepsResults="true" width="212" xLocation="331" yLocation="622">
+<variables>
+<input>
+<variable ID="Sequence" name="Sequence" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="Folder" name="Folder" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="1180369479" blockType="plugins.adufour.blocks.tools.io.CreateFolder" className="plugins.adufour.blocks.tools.io.CreateFolder" collapsed="false" definedName="Create Tracks folder" height="108" keepsResults="true" width="216" xLocation="696" yLocation="1181">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="folder name" name="Folder name" runtime="false" value="Tracks" visible="true"/>
+</input>
+<output>
+<variable ID="new folder" name="New folder" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block CommandLineID="" ID="1715440886" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="127" xLocation="341" yLocation="1046">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="xml" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block CommandLineID="" ID="359700492" blockType="plugins.adufour.blocks.tools.input.Text" className="plugins.adufour.blocks.tools.input.Text" collapsed="false" definedName="Text" height="64" keepsResults="true" width="135" xLocation="340" yLocation="976">
+<variables>
+<input>
+<variable ID="text" name="text" runtime="false" value="Spreading tracks" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="820074474" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="632" yLocation="957">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value=" " visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="609447601" blockType="plugins.adufour.blocks.tools.text.AppendText" className="plugins.adufour.protocols.Protocols" collapsed="false" definedName="Append text" height="130" keepsResults="true" width="170" xLocation="841" yLocation="1002">
+<variables>
+<input>
+<variable ID="input" name="input" runtime="false" visible="true"/>
+<variable ID="Separator" name="Separator" runtime="false" value="." visible="true"/>
+<variable ID="Suffix" name="Suffix" runtime="false" visible="true"/>
+</input>
+<output>
+<variable ID="output" name="output" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="287355696" blockType="plugins.adufour.blocks.tools.io.CreateFile" className="plugins.adufour.blocks.tools.io.CreateFile" collapsed="false" definedName="Create XML file" height="132" keepsResults="true" width="199" xLocation="1118" yLocation="976">
+<variables>
+<input>
+<variable ID="parent folder" name="Base folder" runtime="false" visible="true"/>
+<variable ID="file name" name="File name" runtime="false" visible="true"/>
+<variable ID="overwrite" name="Overwrite" runtime="false" value="true" visible="true"/>
+</input>
+<output>
+<variable ID="new file" name="New file" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="169650478" blockType="plugins.tprovoost.sequenceblocks.infos.SetName" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Set name" height="86" keepsResults="true" width="206" xLocation="1072" yLocation="574">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="name" name="Name" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="302189977" blockType="plugins.fab.trackmanager.blocks.SaveTracksToXML" className="plugins.fab.trackmanager.TrackManager" collapsed="false" definedName="Save tracks to XML" height="83" keepsResults="true" width="207" xLocation="1391" yLocation="956">
+<variables>
+<input>
+<variable ID="tracks" name="Track group" runtime="false" visible="true"/>
+<variable ID="file" name="XML file" runtime="false" type="java.io.File" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="2031044800" blockType="plugins.tprovoost.sequenceblocks.add.AddRois" className="plugins.tprovoost.sequenceblocks.SequenceBlocks" collapsed="false" definedName="Add rois" height="107" keepsResults="true" width="246" xLocation="1057" yLocation="673">
+<variables>
+<input>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="rois(s)" name="Roi(s)" runtime="false" visible="true"/>
+<variable ID="remove" name="Remove previous" runtime="false" value="true" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1482634669" blockType="plugins.adufour.blocks.tools.sequence.ShowSequence" className="plugins.adufour.blocks.tools.sequence.ShowSequence" collapsed="false" definedName="Show sequence" height="61" keepsResults="true" width="214" xLocation="1347" yLocation="220">
+<variables>
+<input>
+<variable ID="sequence" name="sequence" runtime="false" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+<block ID="1662521428" blockType="plugins.adufour.roi.ROITrackStatistics" className="plugins.adufour.roi.ROIMeasures" collapsed="false" definedName="ROI track statistics" height="152" keepsResults="true" width="303" xLocation="1349" yLocation="762">
+<variables>
+<input>
+<variable ID="trackgroup" name="Track group" runtime="false" visible="true"/>
+<variable ID="sequence" name="Sequence" runtime="false" visible="true"/>
+<variable ID="channel" name="Channel" runtime="false" visible="true"/>
+<variable ID="descriptor" name="Descriptor" runtime="false" value="Area" visible="true"/>
+</input>
+<output>
+<variable ID="workbook" name="Workbook" runtime="false" visible="true"/>
+</output>
+</variables>
+</block>
+<block ID="921384719" blockType="plugins.adufour.blocks.tools.io.WorkbookToFile" className="plugins.adufour.blocks.tools.io.WorkbookToFile" collapsed="false" definedName="Workbook to file" height="353" keepsResults="true" width="499" xLocation="1360" yLocation="287">
+<variables>
+<input>
+<variable ID="workbook" name="workbook" runtime="false" visible="true"/>
+<variable ID="file format" name="file format" runtime="false" value="Spreadsheet" visible="true"/>
+<variable ID="output file" name="output file" runtime="false" visible="true"/>
+<variable ID="If file exists" name="If file exists" runtime="false" value="Overwrite" visible="true"/>
+</input>
+<output/>
+</variables>
+</block>
+</blocks>
+<links>
+<link dstBlockID="248344386" dstVarID="sequence" srcBlockID="109698295" srcVarID="sequence"/>
+<link dstBlockID="2055556891" dstVarID="sequence" srcBlockID="109698295" srcVarID="duplicated"/>
+<link dstBlockID="1742731113" dstVarID="sequence" srcBlockID="109698295" srcVarID="sequence"/>
+<link dstBlockID="1392939146" dstVarID="input" srcBlockID="1742731113" srcVarID="name"/>
+<link dstBlockID="1392939146" dstVarID="Suffix" srcBlockID="175279986" srcVarID="text"/>
+<link dstBlockID="2055556891" dstVarID="name" srcBlockID="1392939146" srcVarID="output"/>
+<link dstBlockID="1755144445" dstVarID="sequence" srcBlockID="2055556891" srcVarID="sequence"/>
+<link dstBlockID="1283260541" dstVarID="input sequence" srcBlockID="1755144445" srcVarID="sequence"/>
+<link dstBlockID="321031216" dstVarID="Sequence" srcBlockID="248344386" srcVarID="sequence"/>
+<link dstBlockID="1259814538" dstVarID="input" srcBlockID="248344386" srcVarID="name"/>
+<link dstBlockID="830764681" dstVarID="input" srcBlockID="248344386" srcVarID="name"/>
+<link dstBlockID="820074474" dstVarID="input" srcBlockID="248344386" srcVarID="name"/>
+<link dstBlockID="497921168" dstVarID="input" srcBlockID="1726554876" srcVarID="text"/>
+<link dstBlockID="497921168" dstVarID="Suffix" srcBlockID="201126502" srcVarID="text"/>
+<link dstBlockID="1259814538" dstVarID="Suffix" srcBlockID="497921168" srcVarID="output"/>
+<link dstBlockID="2092846331" dstVarID="file name" srcBlockID="1259814538" srcVarID="output"/>
+<link dstBlockID="2092846331" dstVarID="parent folder" srcBlockID="91112253" srcVarID="folder"/>
+<link dstBlockID="921384719" dstVarID="output file" srcBlockID="2092846331" srcVarID="new file"/>
+<link dstBlockID="1283260541" dstVarID="edge: channel" srcBlockID="46918071" srcVarID="integer"/>
+<link dstBlockID="1662521428" dstVarID="channel" srcBlockID="46918071" srcVarID="integer"/>
+<link dstBlockID="1283260541" dstVarID="region: channel" srcBlockID="46918071" srcVarID="integer"/>
+<link dstBlockID="2031044800" dstVarID="rois(s)" srcBlockID="1283260541" srcVarID="Regions of interest"/>
+<link dstBlockID="440179893" dstVarID="sequence" srcBlockID="1283260541" srcVarID="input sequence"/>
+<link dstBlockID="1662521428" dstVarID="trackgroup" srcBlockID="1283260541" srcVarID="Tracks"/>
+<link dstBlockID="302189977" dstVarID="tracks" srcBlockID="1283260541" srcVarID="Tracks"/>
+<link dstBlockID="169650478" dstVarID="sequence" srcBlockID="440179893" srcVarID="duplicated"/>
+<link dstBlockID="830764681" dstVarID="Suffix" srcBlockID="1970075569" srcVarID="text"/>
+<link dstBlockID="169650478" dstVarID="name" srcBlockID="830764681" srcVarID="output"/>
+<link dstBlockID="1180369479" dstVarID="parent folder" srcBlockID="321031216" srcVarID="Folder"/>
+<link dstBlockID="287355696" dstVarID="parent folder" srcBlockID="1180369479" srcVarID="new folder"/>
+<link dstBlockID="609447601" dstVarID="Suffix" srcBlockID="1715440886" srcVarID="text"/>
+<link dstBlockID="820074474" dstVarID="Suffix" srcBlockID="359700492" srcVarID="text"/>
+<link dstBlockID="609447601" dstVarID="input" srcBlockID="820074474" srcVarID="output"/>
+<link dstBlockID="287355696" dstVarID="file name" srcBlockID="609447601" srcVarID="output"/>
+<link dstBlockID="302189977" dstVarID="file" srcBlockID="287355696" srcVarID="new file"/>
+<link dstBlockID="2031044800" dstVarID="sequence" srcBlockID="169650478" srcVarID="sequence"/>
+<link dstBlockID="1482634669" dstVarID="sequence" srcBlockID="2031044800" srcVarID="sequence"/>
+<link dstBlockID="1662521428" dstVarID="sequence" srcBlockID="2031044800" srcVarID="sequence"/>
+<link dstBlockID="921384719" dstVarID="workbook" srcBlockID="1662521428" srcVarID="workbook"/>
+</links>
+<variables>
+<input>
+<variable ID="109698295:sequence" blockID="109698295" value="No Sequence" visible="true"/>
+<variable ID="1742731113:sequence" blockID="1742731113" value="No Sequence" visible="false"/>
+<variable ID="175279986:text" blockID="175279986" value="Live tracking of IRM" visible="false"/>
+<variable ID="1392939146:input" blockID="1392939146" value="" visible="false"/>
+<variable ID="1392939146:Separator" blockID="1392939146" value=" " visible="false"/>
+<variable ID="1392939146:Suffix" blockID="1392939146" value="Live tracking of IRM" visible="false"/>
+<variable ID="2055556891:sequence" blockID="2055556891" value="No Sequence" visible="false"/>
+<variable ID="2055556891:name" blockID="2055556891" value="" visible="false"/>
+<variable ID="1755144445:sequence" blockID="1755144445" value="No Sequence" visible="false"/>
+<variable ID="248344386:sequence" blockID="248344386" value="No Sequence" visible="false"/>
+<variable ID="248344386:folder" blockID="248344386" value="false" visible="false"/>
+<variable ID="248344386:extension" blockID="248344386" value="false" visible="false"/>
+<variable ID="1726554876:text" blockID="1726554876" value="IRM Area" visible="false"/>
+<variable ID="201126502:text" blockID="201126502" value="xlsx" visible="true"/>
+<variable ID="497921168:input" blockID="497921168" value="" visible="false"/>
+<variable ID="497921168:Separator" blockID="497921168" value="." visible="false"/>
+<variable ID="497921168:Suffix" blockID="497921168" value="xlsx" visible="false"/>
+<variable ID="1259814538:input" blockID="1259814538" value="" visible="false"/>
+<variable ID="1259814538:Separator" blockID="1259814538" value=" " visible="false"/>
+<variable ID="1259814538:Suffix" blockID="1259814538" value="" visible="false"/>
+<variable ID="91112253:folder" blockID="91112253" value="G:\Group_Westerberg\Jasper Taal\SP5\IRM and Calcium\Primary B cells\11112021 Ca2 primary\Individual conditions (with FFC)\New folder\Data sheets testing\Final" visible="true"/>
+<variable ID="2092846331:parent folder" blockID="2092846331" value="" visible="false"/>
+<variable ID="2092846331:file name" blockID="2092846331" value="" visible="false"/>
+<variable ID="2092846331:overwrite" blockID="2092846331" value="true" visible="false"/>
+<variable ID="46918071:integer" blockID="46918071" value="0" visible="true"/>
+<variable ID="1283260541:input sequence" blockID="1283260541" value="No Sequence" visible="false"/>
+<variable ID="1283260541:Input ROI" blockID="1283260541" value="No ROI" visible="true"/>
+<variable ID="1283260541:regularization: weight" blockID="1283260541" value="0.05" visible="false"/>
+<variable ID="1283260541:edge: weight" blockID="1283260541" value="-0.0" visible="false"/>
+<variable ID="1283260541:edge: channel" blockID="1283260541" value="0" visible="false"/>
+<variable ID="1283260541:region: weight" blockID="1283260541" value="1.0" visible="false"/>
+<variable ID="1283260541:region: sensitivity" blockID="1283260541" value="3.0" visible="false"/>
+<variable ID="1283260541:region: channel" blockID="1283260541" value="0" visible="false"/>
+<variable ID="1283260541:balloon: weight" blockID="1283260541" value="0.0" visible="false"/>
+<variable ID="1283260541:contour resolution" blockID="1283260541" value="1.0" visible="false"/>
+<variable ID="1283260541:region bounds" blockID="1283260541" value="No Sequence" visible="false"/>
+<variable ID="1283260541:time step" blockID="1283260541" value="0.1" visible="false"/>
+<variable ID="1283260541:convergence value" blockID="1283260541" value="0.001" visible="false"/>
+<variable ID="1283260541:max. iterations" blockID="1283260541" value="100000" visible="false"/>
+<variable ID="1283260541:type of ROI output" blockID="1283260541" value="AREA" visible="false"/>
+<variable ID="1283260541:tracking" blockID="1283260541" value="true" visible="false"/>
+<variable ID="1283260541:division sensitivity" blockID="1283260541" value="0.0" visible="false"/>
+<variable ID="1283260541:axis constraint" blockID="1283260541" value="0.0" visible="false"/>
+<variable ID="1283260541:Volume weight" blockID="1283260541" value="0.0" visible="false"/>
+<variable ID="1283260541:watch entering objects" blockID="1283260541" value="false" visible="false"/>
+<variable ID="440179893:sequence" blockID="440179893" value="No Sequence" visible="false"/>
+<variable ID="1970075569:text" blockID="1970075569" value="Spreading Duplicate" visible="false"/>
+<variable ID="830764681:input" blockID="830764681" value="" visible="false"/>
+<variable ID="830764681:Separator" blockID="830764681" value=" " visible="false"/>
+<variable ID="830764681:Suffix" blockID="830764681" value="Spreading Duplicate" visible="false"/>
+<variable ID="321031216:Sequence" blockID="321031216" value="No Sequence" visible="false"/>
+<variable ID="1180369479:parent folder" blockID="1180369479" value="" visible="false"/>
+<variable ID="1180369479:folder name" blockID="1180369479" value="Tracks" visible="false"/>
+<variable ID="1715440886:text" blockID="1715440886" value="xml" visible="false"/>
+<variable ID="359700492:text" blockID="359700492" value="Spreading tracks" visible="false"/>
+<variable ID="820074474:input" blockID="820074474" value="" visible="false"/>
+<variable ID="820074474:Separator" blockID="820074474" value=" " visible="false"/>
+<variable ID="820074474:Suffix" blockID="820074474" value="Spreading tracks" visible="false"/>
+<variable ID="609447601:input" blockID="609447601" value="" visible="false"/>
+<variable ID="609447601:Separator" blockID="609447601" value="." visible="false"/>
+<variable ID="609447601:Suffix" blockID="609447601" value="xml" visible="false"/>
+<variable ID="287355696:parent folder" blockID="287355696" value="" visible="false"/>
+<variable ID="287355696:file name" blockID="287355696" value="" visible="false"/>
+<variable ID="287355696:overwrite" blockID="287355696" value="true" visible="false"/>
+<variable ID="169650478:sequence" blockID="169650478" value="No Sequence" visible="false"/>
+<variable ID="169650478:name" blockID="169650478" value="" visible="false"/>
+<variable ID="302189977:tracks" blockID="302189977" value="" visible="false"/>
+<variable ID="302189977:file" blockID="302189977" value="" visible="false"/>
+<variable ID="2031044800:sequence" blockID="2031044800" value="No Sequence" visible="false"/>
+<variable ID="2031044800:rois(s)" blockID="2031044800" value="No ROI" visible="false"/>
+<variable ID="2031044800:remove" blockID="2031044800" value="true" visible="false"/>
+<variable ID="1482634669:sequence" blockID="1482634669" value="No Sequence" visible="false"/>
+<variable ID="1662521428:trackgroup" blockID="1662521428" value="" visible="false"/>
+<variable ID="1662521428:sequence" blockID="1662521428" value="No Sequence" visible="false"/>
+<variable ID="1662521428:channel" blockID="1662521428" value="0" visible="false"/>
+<variable ID="1662521428:descriptor" blockID="1662521428" value="Area" visible="false"/>
+<variable ID="921384719:workbook" blockID="921384719" value="" visible="false"/>
+<variable ID="921384719:file format" blockID="921384719" value="Spreadsheet" visible="false"/>
+<variable ID="921384719:output file" blockID="921384719" value="" visible="false"/>
+<variable ID="921384719:If file exists" blockID="921384719" value="Overwrite" visible="false"/>
+</input>
+<output>
+<variable ID="109698295:duplicated" blockID="109698295" visible="false"/>
+<variable ID="1742731113:name" blockID="1742731113" visible="false"/>
+<variable ID="1392939146:output" blockID="1392939146" visible="false"/>
+<variable ID="248344386:name" blockID="248344386" visible="false"/>
+<variable ID="497921168:output" blockID="497921168" visible="false"/>
+<variable ID="1259814538:output" blockID="1259814538" visible="false"/>
+<variable ID="2092846331:new file" blockID="2092846331" visible="false"/>
+<variable ID="1283260541:Regions of interest" blockID="1283260541" visible="false"/>
+<variable ID="1283260541:Tracks" blockID="1283260541" visible="false"/>
+<variable ID="1283260541:Labels" blockID="1283260541" visible="false"/>
+<variable ID="440179893:duplicated" blockID="440179893" visible="false"/>
+<variable ID="830764681:output" blockID="830764681" visible="false"/>
+<variable ID="321031216:Folder" blockID="321031216" visible="false"/>
+<variable ID="1180369479:new folder" blockID="1180369479" visible="false"/>
+<variable ID="820074474:output" blockID="820074474" visible="false"/>
+<variable ID="609447601:output" blockID="609447601" visible="false"/>
+<variable ID="287355696:new file" blockID="287355696" visible="false"/>
+<variable ID="1662521428:workbook" blockID="1662521428" visible="false"/>
+</output>
+</variables>
+</workflow>
+</blocks>
+<links>
+<link dstBlockID="1183993309" dstVarID="sequence" srcBlockID="1690557453" srcVarID="Sequence"/>
+<link dstBlockID="832956400" dstVarID="input0" srcBlockID="1183993309" srcVarID="sequence"/>
+<link dstBlockID="815809005" dstVarID="input sequence" srcBlockID="832956400" srcVarID="output0" srcVarType="icy.sequence.Sequence"/>
+<link dstBlockID="750366310" dstVarID="input sequence" srcBlockID="815809005" srcVarID="input sequence"/>
+<link dstBlockID="750366310" dstVarID="Input ROI" srcBlockID="815809005" srcVarID="extracted rois"/>
+<link dstBlockID="1617865571" dstVarID="sequence" srcBlockID="815809005" srcVarID="input sequence"/>
+<link dstBlockID="1281534305" dstVarID="1283260541:Input ROI" srcBlockID="815809005" srcVarID="extracted rois"/>
+<link dstBlockID="870391428" dstVarID="rois(s)" srcBlockID="750366310" srcVarID="Regions of interest"/>
+<link dstBlockID="1091295725" dstVarID="sequence" srcBlockID="750366310" srcVarID="input sequence"/>
+<link dstBlockID="1218831524" dstVarID="trackgroup" srcBlockID="750366310" srcVarID="Tracks"/>
+<link dstBlockID="792560623" dstVarID="trackgroup" srcBlockID="750366310" srcVarID="Tracks"/>
+<link dstBlockID="921146298" dstVarID="trackgroup" srcBlockID="750366310" srcVarID="Tracks"/>
+<link dstBlockID="357638828" dstVarID="tracks" srcBlockID="750366310" srcVarID="Tracks"/>
+<link dstBlockID="1281534305" dstVarID="109698295:sequence" srcBlockID="750366310" srcVarID="input sequence"/>
+<link dstBlockID="1065207242" dstVarID="parent folder" srcBlockID="1025426812" srcVarID="folder"/>
+<link dstBlockID="349530987" dstVarID="parent folder" srcBlockID="1025426812" srcVarID="folder"/>
+<link dstBlockID="97888762" dstVarID="parent folder" srcBlockID="1025426812" srcVarID="folder"/>
+<link dstBlockID="1281534305" dstVarID="91112253:folder" srcBlockID="1025426812" srcVarID="folder"/>
+<link dstBlockID="101588624" dstVarID="input" srcBlockID="638826384" srcVarID="text"/>
+<link dstBlockID="2054296461" dstVarID="input" srcBlockID="1617865571" srcVarID="name"/>
+<link dstBlockID="1518878907" dstVarID="input" srcBlockID="1617865571" srcVarID="name"/>
+<link dstBlockID="658155541" dstVarID="input" srcBlockID="1617865571" srcVarID="name"/>
+<link dstBlockID="63907406" dstVarID="input" srcBlockID="1617865571" srcVarID="name"/>
+<link dstBlockID="989942332" dstVarID="Sequence" srcBlockID="1617865571" srcVarID="sequence"/>
+<link dstBlockID="779189752" dstVarID="input" srcBlockID="1617865571" srcVarID="name"/>
+<link dstBlockID="1332896382" dstVarID="Suffix" srcBlockID="1638763342" srcVarID="text"/>
+<link dstBlockID="1387746795" dstVarID="Suffix" srcBlockID="1638763342" srcVarID="text"/>
+<link dstBlockID="101588624" dstVarID="Suffix" srcBlockID="1638763342" srcVarID="text"/>
+<link dstBlockID="1281534305" dstVarID="201126502:text" srcBlockID="1638763342" srcVarID="text"/>
+<link dstBlockID="658155541" dstVarID="Suffix" srcBlockID="101588624" srcVarID="output"/>
+<link dstBlockID="1065207242" dstVarID="file name" srcBlockID="658155541" srcVarID="output"/>
+<link dstBlockID="1328379672" dstVarID="output file" srcBlockID="1065207242" srcVarID="new file"/>
+<link dstBlockID="1387746795" dstVarID="input" srcBlockID="1920050748" srcVarID="text"/>
+<link dstBlockID="1518878907" dstVarID="Suffix" srcBlockID="1387746795" srcVarID="output"/>
+<link dstBlockID="349530987" dstVarID="file name" srcBlockID="1518878907" srcVarID="output"/>
+<link dstBlockID="1039069485" dstVarID="output file" srcBlockID="349530987" srcVarID="new file"/>
+<link dstBlockID="1332896382" dstVarID="input" srcBlockID="1659076552" srcVarID="text"/>
+<link dstBlockID="2054296461" dstVarID="Suffix" srcBlockID="1332896382" srcVarID="output"/>
+<link dstBlockID="97888762" dstVarID="file name" srcBlockID="2054296461" srcVarID="output"/>
+<link dstBlockID="1032723422" dstVarID="output file" srcBlockID="97888762" srcVarID="new file"/>
+<link dstBlockID="1206195794" dstVarID="sequence" srcBlockID="1091295725" srcVarID="duplicated"/>
+<link dstBlockID="63907406" dstVarID="Suffix" srcBlockID="1435529723" srcVarID="text"/>
+<link dstBlockID="1206195794" dstVarID="name" srcBlockID="63907406" srcVarID="output"/>
+<link dstBlockID="870391428" dstVarID="sequence" srcBlockID="1206195794" srcVarID="sequence"/>
+<link dstBlockID="1218831524" dstVarID="sequence" srcBlockID="870391428" srcVarID="sequence"/>
+<link dstBlockID="792560623" dstVarID="sequence" srcBlockID="870391428" srcVarID="sequence"/>
+<link dstBlockID="921146298" dstVarID="sequence" srcBlockID="870391428" srcVarID="sequence"/>
+<link dstBlockID="933710153" dstVarID="sequence" srcBlockID="870391428" srcVarID="sequence"/>
+<link dstBlockID="1032723422" dstVarID="workbook" srcBlockID="1218831524" srcVarID="workbook"/>
+<link dstBlockID="1039069485" dstVarID="workbook" srcBlockID="792560623" srcVarID="workbook"/>
+<link dstBlockID="1328379672" dstVarID="workbook" srcBlockID="921146298" srcVarID="workbook"/>
+<link dstBlockID="378165525" dstVarID="Suffix" srcBlockID="1945892183" srcVarID="text"/>
+<link dstBlockID="779189752" dstVarID="Suffix" srcBlockID="1176621553" srcVarID="text"/>
+<link dstBlockID="378165525" dstVarID="input" srcBlockID="779189752" srcVarID="output"/>
+<link dstBlockID="1584500257" dstVarID="file name" srcBlockID="378165525" srcVarID="output"/>
+<link dstBlockID="1369735412" dstVarID="parent folder" srcBlockID="989942332" srcVarID="Folder"/>
+<link dstBlockID="1584500257" dstVarID="parent folder" srcBlockID="1369735412" srcVarID="new folder"/>
+<link dstBlockID="357638828" dstVarID="file" srcBlockID="1584500257" srcVarID="new file"/>
+</links>
+<variables>
+<input>
+<variable ID="folder" blockID="1690557453" value="G:\Group_Westerberg\Jasper Taal\SP5\IRM and Calcium\Primary B cells\11112021 Ca2 primary\Individual conditions (with FFC)\New folder" visible="true"/>
+<variable ID="extension" blockID="1690557453" value=".tif" visible="true"/>
+<variable ID="Include sub-folders" blockID="1690557453" value="false" visible="true"/>
+<variable ID="1183993309:sequence" blockID="1183993309" value="No Sequence" visible="false"/>
+<variable ID="832956400:Script" blockID="832956400" value="importClass(Packages.icy.sequence.SequenceUtil)&#10;&#10;sequence = input0&#10;SequenceUtil.reverseT(sequence)&#10;output0 = sequence" visible="false"/>
+<variable ID="832956400:Add Input" blockID="832956400" value="0" visible="false"/>
+<variable ID="832956400:Add output" blockID="832956400" value="0" visible="false"/>
+<variable ID="832956400:input0" blockID="832956400" value="" visible="false"/>
+<variable ID="815809005:input sequence" blockID="815809005" value="No Sequence" visible="false"/>
+<variable ID="815809005:selection state of ROI to extract" blockID="815809005" value="ALL" visible="false"/>
+<variable ID="750366310:input sequence" blockID="750366310" value="No Sequence" visible="false"/>
+<variable ID="750366310:Input ROI" blockID="750366310" value="No ROI" visible="false"/>
+<variable ID="750366310:regularization: weight" blockID="750366310" value="0.05" visible="false"/>
+<variable ID="750366310:edge: weight" blockID="750366310" value="-0.99999999999" visible="false"/>
+<variable ID="750366310:edge: channel" blockID="750366310" value="2" visible="true"/>
+<variable ID="750366310:region: weight" blockID="750366310" value="1.0" visible="false"/>
+<variable ID="750366310:region: sensitivity" blockID="750366310" value="1.0" visible="false"/>
+<variable ID="750366310:region: channel" blockID="750366310" value="2" visible="true"/>
+<variable ID="750366310:balloon: weight" blockID="750366310" value="0.0" visible="false"/>
+<variable ID="750366310:contour resolution" blockID="750366310" value="1.5" visible="false"/>
+<variable ID="750366310:region bounds" blockID="750366310" value="No Sequence" visible="false"/>
+<variable ID="750366310:time step" blockID="750366310" value="0.1" visible="false"/>
+<variable ID="750366310:convergence value" blockID="750366310" value="0.0049" visible="false"/>
+<variable ID="750366310:max. iterations" blockID="750366310" value="25000" visible="false"/>
+<variable ID="750366310:type of ROI output" blockID="750366310" value="AREA" visible="false"/>
+<variable ID="750366310:tracking" blockID="750366310" value="true" visible="false"/>
+<variable ID="750366310:division sensitivity" blockID="750366310" value="0.0" visible="false"/>
+<variable ID="750366310:axis constraint" blockID="750366310" value="0.0" visible="false"/>
+<variable ID="750366310:Volume weight" blockID="750366310" value="0.0" visible="false"/>
+<variable ID="750366310:watch entering objects" blockID="750366310" value="false" visible="false"/>
+<variable ID="1025426812:folder" blockID="1025426812" value="" visible="true"/>
+<variable ID="638826384:text" blockID="638826384" value="Sum intensity" visible="false"/>
+<variable ID="1617865571:sequence" blockID="1617865571" value="No Sequence" visible="false"/>
+<variable ID="1617865571:folder" blockID="1617865571" value="false" visible="false"/>
+<variable ID="1617865571:extension" blockID="1617865571" value="false" visible="false"/>
+<variable ID="1638763342:text" blockID="1638763342" value="xlsx" visible="true"/>
+<variable ID="101588624:input" blockID="101588624" value="" visible="false"/>
+<variable ID="101588624:Separator" blockID="101588624" value="." visible="false"/>
+<variable ID="101588624:Suffix" blockID="101588624" value="xlsx" visible="false"/>
+<variable ID="658155541:input" blockID="658155541" value="" visible="false"/>
+<variable ID="658155541:Separator" blockID="658155541" value=" " visible="false"/>
+<variable ID="658155541:Suffix" blockID="658155541" value="" visible="false"/>
+<variable ID="1065207242:parent folder" blockID="1065207242" value="" visible="false"/>
+<variable ID="1065207242:file name" blockID="1065207242" value="" visible="false"/>
+<variable ID="1065207242:overwrite" blockID="1065207242" value="true" visible="false"/>
+<variable ID="1920050748:text" blockID="1920050748" value="Mean intensity" visible="false"/>
+<variable ID="1387746795:input" blockID="1387746795" value="" visible="false"/>
+<variable ID="1387746795:Separator" blockID="1387746795" value="." visible="false"/>
+<variable ID="1387746795:Suffix" blockID="1387746795" value="xlsx" visible="false"/>
+<variable ID="1518878907:input" blockID="1518878907" value="" visible="false"/>
+<variable ID="1518878907:Separator" blockID="1518878907" value=" " visible="false"/>
+<variable ID="1518878907:Suffix" blockID="1518878907" value="" visible="false"/>
+<variable ID="349530987:parent folder" blockID="349530987" value="" visible="false"/>
+<variable ID="349530987:file name" blockID="349530987" value="" visible="false"/>
+<variable ID="349530987:overwrite" blockID="349530987" value="true" visible="false"/>
+<variable ID="1659076552:text" blockID="1659076552" value="Area" visible="false"/>
+<variable ID="1332896382:input" blockID="1332896382" value="" visible="false"/>
+<variable ID="1332896382:Separator" blockID="1332896382" value="." visible="false"/>
+<variable ID="1332896382:Suffix" blockID="1332896382" value="xlsx" visible="false"/>
+<variable ID="2054296461:input" blockID="2054296461" value="" visible="false"/>
+<variable ID="2054296461:Separator" blockID="2054296461" value=" " visible="false"/>
+<variable ID="2054296461:Suffix" blockID="2054296461" value="" visible="false"/>
+<variable ID="97888762:parent folder" blockID="97888762" value="" visible="false"/>
+<variable ID="97888762:file name" blockID="97888762" value="" visible="false"/>
+<variable ID="97888762:overwrite" blockID="97888762" value="true" visible="false"/>
+<variable ID="1091295725:sequence" blockID="1091295725" value="No Sequence" visible="false"/>
+<variable ID="1435529723:text" blockID="1435529723" value="Calcium Duplicate" visible="false"/>
+<variable ID="63907406:input" blockID="63907406" value="" visible="false"/>
+<variable ID="63907406:Separator" blockID="63907406" value=" " visible="false"/>
+<variable ID="63907406:Suffix" blockID="63907406" value="Calcium Duplicate" visible="false"/>
+<variable ID="1206195794:sequence" blockID="1206195794" value="No Sequence" visible="false"/>
+<variable ID="1206195794:name" blockID="1206195794" value="" visible="false"/>
+<variable ID="870391428:sequence" blockID="870391428" value="No Sequence" visible="false"/>
+<variable ID="870391428:rois(s)" blockID="870391428" value="No ROI" visible="false"/>
+<variable ID="870391428:remove" blockID="870391428" value="true" visible="false"/>
+<variable ID="1218831524:trackgroup" blockID="1218831524" value="" visible="false"/>
+<variable ID="1218831524:sequence" blockID="1218831524" value="No Sequence" visible="false"/>
+<variable ID="1218831524:channel" blockID="1218831524" value="2" visible="true"/>
+<variable ID="1218831524:descriptor" blockID="1218831524" value="Area" visible="false"/>
+<variable ID="792560623:trackgroup" blockID="792560623" value="" visible="false"/>
+<variable ID="792560623:sequence" blockID="792560623" value="No Sequence" visible="false"/>
+<variable ID="792560623:channel" blockID="792560623" value="1" visible="true"/>
+<variable ID="792560623:descriptor" blockID="792560623" value="Mean intensity" visible="false"/>
+<variable ID="921146298:trackgroup" blockID="921146298" value="" visible="false"/>
+<variable ID="921146298:sequence" blockID="921146298" value="No Sequence" visible="false"/>
+<variable ID="921146298:channel" blockID="921146298" value="1" visible="true"/>
+<variable ID="921146298:descriptor" blockID="921146298" value="Sum intensity" visible="false"/>
+<variable ID="1032723422:workbook" blockID="1032723422" value="" visible="false"/>
+<variable ID="1032723422:file format" blockID="1032723422" value="Spreadsheet" visible="false"/>
+<variable ID="1032723422:output file" blockID="1032723422" value="" visible="false"/>
+<variable ID="1032723422:If file exists" blockID="1032723422" value="Overwrite" visible="false"/>
+<variable ID="1039069485:workbook" blockID="1039069485" value="" visible="false"/>
+<variable ID="1039069485:file format" blockID="1039069485" value="Spreadsheet" visible="false"/>
+<variable ID="1039069485:output file" blockID="1039069485" value="" visible="false"/>
+<variable ID="1039069485:If file exists" blockID="1039069485" value="Overwrite" visible="false"/>
+<variable ID="1328379672:workbook" blockID="1328379672" value="" visible="false"/>
+<variable ID="1328379672:file format" blockID="1328379672" value="Spreadsheet" visible="false"/>
+<variable ID="1328379672:output file" blockID="1328379672" value="" visible="false"/>
+<variable ID="1328379672:If file exists" blockID="1328379672" value="Overwrite" visible="false"/>
+<variable ID="933710153:sequence" blockID="933710153" value="No Sequence" visible="false"/>
+<variable ID="1945892183:text" blockID="1945892183" value="xml" visible="false"/>
+<variable ID="1176621553:text" blockID="1176621553" value="Calcium tracks" visible="false"/>
+<variable ID="779189752:input" blockID="779189752" value="" visible="false"/>
+<variable ID="779189752:Separator" blockID="779189752" value=" " visible="false"/>
+<variable ID="779189752:Suffix" blockID="779189752" value="Calcium tracks" visible="false"/>
+<variable ID="378165525:input" blockID="378165525" value="" visible="false"/>
+<variable ID="378165525:Separator" blockID="378165525" value="." visible="false"/>
+<variable ID="378165525:Suffix" blockID="378165525" value="xml" visible="false"/>
+<variable ID="989942332:Sequence" blockID="989942332" value="No Sequence" visible="false"/>
+<variable ID="1369735412:parent folder" blockID="1369735412" value="" visible="false"/>
+<variable ID="1369735412:folder name" blockID="1369735412" value="Tracks" visible="false"/>
+<variable ID="1584500257:parent folder" blockID="1584500257" value="" visible="false"/>
+<variable ID="1584500257:file name" blockID="1584500257" value="" visible="false"/>
+<variable ID="1584500257:overwrite" blockID="1584500257" value="true" visible="false"/>
+<variable ID="357638828:tracks" blockID="357638828" value="" visible="false"/>
+<variable ID="357638828:file" blockID="357638828" value="" visible="false"/>
+<variable ID="1281534305:109698295:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1742731113:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:175279986:text" blockID="1281534305" value="Live tracking of IRM" visible="false"/>
+<variable ID="1281534305:1392939146:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:1392939146:Separator" blockID="1281534305" value=" " visible="false"/>
+<variable ID="1281534305:1392939146:Suffix" blockID="1281534305" value="Live tracking of IRM" visible="false"/>
+<variable ID="1281534305:2055556891:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:2055556891:name" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:1755144445:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:248344386:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:248344386:folder" blockID="1281534305" value="false" visible="false"/>
+<variable ID="1281534305:248344386:extension" blockID="1281534305" value="false" visible="false"/>
+<variable ID="1281534305:1726554876:text" blockID="1281534305" value="IRM Area" visible="false"/>
+<variable ID="1281534305:201126502:text" blockID="1281534305" value="xlsx" visible="false"/>
+<variable ID="1281534305:497921168:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:497921168:Separator" blockID="1281534305" value="." visible="false"/>
+<variable ID="1281534305:497921168:Suffix" blockID="1281534305" value="xlsx" visible="false"/>
+<variable ID="1281534305:1259814538:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:1259814538:Separator" blockID="1281534305" value=" " visible="false"/>
+<variable ID="1281534305:1259814538:Suffix" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:91112253:folder" blockID="1281534305" value="G:\Group_Westerberg\Jasper Taal\SP5\IRM and Calcium\Primary B cells\11112021 Ca2 primary\Individual conditions (with FFC)\New folder\Data sheets testing\Final" visible="false"/>
+<variable ID="1281534305:2092846331:parent folder" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:2092846331:file name" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:2092846331:overwrite" blockID="1281534305" value="true" visible="false"/>
+<variable ID="1281534305:46918071:integer" blockID="1281534305" value="0" visible="true"/>
+<variable ID="1281534305:1283260541:input sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1283260541:Input ROI" blockID="1281534305" value="No ROI" visible="false"/>
+<variable ID="1281534305:1283260541:regularization: weight" blockID="1281534305" value="0.05" visible="false"/>
+<variable ID="1281534305:1283260541:edge: weight" blockID="1281534305" value="-0.0" visible="false"/>
+<variable ID="1281534305:1283260541:edge: channel" blockID="1281534305" value="0" visible="false"/>
+<variable ID="1281534305:1283260541:region: weight" blockID="1281534305" value="1.0" visible="false"/>
+<variable ID="1281534305:1283260541:region: sensitivity" blockID="1281534305" value="3.0" visible="false"/>
+<variable ID="1281534305:1283260541:region: channel" blockID="1281534305" value="0" visible="false"/>
+<variable ID="1281534305:1283260541:balloon: weight" blockID="1281534305" value="0.0" visible="false"/>
+<variable ID="1281534305:1283260541:contour resolution" blockID="1281534305" value="1.0" visible="false"/>
+<variable ID="1281534305:1283260541:region bounds" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1283260541:time step" blockID="1281534305" value="0.1" visible="false"/>
+<variable ID="1281534305:1283260541:convergence value" blockID="1281534305" value="0.001" visible="false"/>
+<variable ID="1281534305:1283260541:max. iterations" blockID="1281534305" value="100000" visible="false"/>
+<variable ID="1281534305:1283260541:type of ROI output" blockID="1281534305" value="AREA" visible="false"/>
+<variable ID="1281534305:1283260541:tracking" blockID="1281534305" value="true" visible="false"/>
+<variable ID="1281534305:1283260541:division sensitivity" blockID="1281534305" value="0.0" visible="false"/>
+<variable ID="1281534305:1283260541:axis constraint" blockID="1281534305" value="0.0" visible="false"/>
+<variable ID="1281534305:1283260541:Volume weight" blockID="1281534305" value="0.0" visible="false"/>
+<variable ID="1281534305:1283260541:watch entering objects" blockID="1281534305" value="false" visible="false"/>
+<variable ID="1281534305:440179893:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1970075569:text" blockID="1281534305" value="Spreading Duplicate" visible="false"/>
+<variable ID="1281534305:830764681:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:830764681:Separator" blockID="1281534305" value=" " visible="false"/>
+<variable ID="1281534305:830764681:Suffix" blockID="1281534305" value="Spreading Duplicate" visible="false"/>
+<variable ID="1281534305:321031216:Sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1180369479:parent folder" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:1180369479:folder name" blockID="1281534305" value="Tracks" visible="false"/>
+<variable ID="1281534305:1715440886:text" blockID="1281534305" value="xml" visible="false"/>
+<variable ID="1281534305:359700492:text" blockID="1281534305" value="Spreading tracks" visible="false"/>
+<variable ID="1281534305:820074474:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:820074474:Separator" blockID="1281534305" value=" " visible="false"/>
+<variable ID="1281534305:820074474:Suffix" blockID="1281534305" value="Spreading tracks" visible="false"/>
+<variable ID="1281534305:609447601:input" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:609447601:Separator" blockID="1281534305" value="." visible="false"/>
+<variable ID="1281534305:609447601:Suffix" blockID="1281534305" value="xml" visible="false"/>
+<variable ID="1281534305:287355696:parent folder" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:287355696:file name" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:287355696:overwrite" blockID="1281534305" value="true" visible="false"/>
+<variable ID="1281534305:169650478:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:169650478:name" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:302189977:tracks" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:302189977:file" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:2031044800:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:2031044800:rois(s)" blockID="1281534305" value="No ROI" visible="false"/>
+<variable ID="1281534305:2031044800:remove" blockID="1281534305" value="true" visible="false"/>
+<variable ID="1281534305:1482634669:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1662521428:trackgroup" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:1662521428:sequence" blockID="1281534305" value="No Sequence" visible="false"/>
+<variable ID="1281534305:1662521428:channel" blockID="1281534305" value="0" visible="false"/>
+<variable ID="1281534305:1662521428:descriptor" blockID="1281534305" value="Area" visible="false"/>
+<variable ID="1281534305:921384719:workbook" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:921384719:file format" blockID="1281534305" value="Spreadsheet" visible="false"/>
+<variable ID="1281534305:921384719:output file" blockID="1281534305" value="" visible="false"/>
+<variable ID="1281534305:921384719:If file exists" blockID="1281534305" value="Overwrite" visible="false"/>
+</input>
+<output>
+<variable ID="iteration" blockID="1690557453" visible="true"/>
+<variable ID="Sequence" blockID="1690557453" visible="true"/>
+<variable ID="832956400:output0" blockID="832956400" visible="false"/>
+<variable ID="815809005:extracted rois" blockID="815809005" visible="false"/>
+<variable ID="750366310:Regions of interest" blockID="750366310" visible="false"/>
+<variable ID="750366310:Tracks" blockID="750366310" visible="false"/>
+<variable ID="750366310:Labels" blockID="750366310" visible="false"/>
+<variable ID="1617865571:name" blockID="1617865571" visible="false"/>
+<variable ID="101588624:output" blockID="101588624" visible="false"/>
+<variable ID="658155541:output" blockID="658155541" visible="false"/>
+<variable ID="1065207242:new file" blockID="1065207242" visible="false"/>
+<variable ID="1387746795:output" blockID="1387746795" visible="false"/>
+<variable ID="1518878907:output" blockID="1518878907" visible="false"/>
+<variable ID="349530987:new file" blockID="349530987" visible="false"/>
+<variable ID="1332896382:output" blockID="1332896382" visible="false"/>
+<variable ID="2054296461:output" blockID="2054296461" visible="false"/>
+<variable ID="97888762:new file" blockID="97888762" visible="false"/>
+<variable ID="1091295725:duplicated" blockID="1091295725" visible="false"/>
+<variable ID="63907406:output" blockID="63907406" visible="false"/>
+<variable ID="1218831524:workbook" blockID="1218831524" visible="false"/>
+<variable ID="792560623:workbook" blockID="792560623" visible="false"/>
+<variable ID="921146298:workbook" blockID="921146298" visible="false"/>
+<variable ID="779189752:output" blockID="779189752" visible="false"/>
+<variable ID="378165525:output" blockID="378165525" visible="false"/>
+<variable ID="989942332:Folder" blockID="989942332" visible="false"/>
+<variable ID="1369735412:new folder" blockID="1369735412" visible="false"/>
+<variable ID="1584500257:new file" blockID="1584500257" visible="false"/>
+<variable ID="1281534305:109698295:duplicated" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1742731113:name" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1392939146:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:248344386:name" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:497921168:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1259814538:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:2092846331:new file" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1283260541:Regions of interest" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1283260541:Tracks" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1283260541:Labels" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:440179893:duplicated" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:830764681:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:321031216:Folder" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1180369479:new folder" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:820074474:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:609447601:output" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:287355696:new file" blockID="1281534305" visible="false"/>
+<variable ID="1281534305:1662521428:workbook" blockID="1281534305" visible="false"/>
+</output>
+</variables>
+</workflow>
+</blocks>
+<links>
+<link dstBlockID="1690557453" dstVarID="1281534305:46918071:integer" srcBlockID="1155601347" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="folder" srcBlockID="289123939" srcVarID="folder"/>
+<link dstBlockID="1690557453" dstVarID="750366310:edge: channel" srcBlockID="2049786861" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="750366310:region: channel" srcBlockID="2049786861" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="1218831524:channel" srcBlockID="2049786861" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="1025426812:folder" srcBlockID="23413558" srcVarID="folder"/>
+<link dstBlockID="1690557453" dstVarID="921146298:channel" srcBlockID="1727884160" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="792560623:channel" srcBlockID="1727884160" srcVarID="integer"/>
+<link dstBlockID="1690557453" dstVarID="1638763342:text" srcBlockID="961012967" srcVarID="text"/>
+</links>
+</protocol>
