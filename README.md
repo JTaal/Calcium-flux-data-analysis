@@ -1,5 +1,5 @@
 # Calcium flux data analysis
-Converting multi channel microscopic timelapses of calcium fluxing cells into data using Imagej and Icy
+Converting multi channel microscopic timelapses of calcium fluxing B cells into data using Imagej and Icy
 
 Essential:
 **Icy**       http://icy.bioimageanalysis.org/
